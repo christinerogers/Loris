@@ -76,9 +76,7 @@
                 <div class="form-group col-sm-8">
 		</div>
 	    </div> 
-
-            <br class="visible-xs">
-
+<!-- CNV section -->
             <div class="show-cnv-selector" style="display:none" id="show-cnv-selector">
                 <div class="row">
 		    <div class="col-sm-4 col-md-2 col-xs-12">
@@ -265,7 +263,7 @@
 	    <div class="row">
                 <div class="form-group col-sm-4">
                     <label class="col-sm-12 col-md-4">
-        		Gene Symbol
+        		{$form.Gene_Symbol.label}
                     </label>
                     <div class="col-sm-12 col-md-8">
         	        {$form.Gene_Symbol.html}
@@ -281,7 +279,7 @@
 		</div>
                 <div class="form-group col-sm-4">
                     <label class="col-sm-12 col-md-4">
-        		Platform
+        	       {$form.Platform_Name.label}
                     </label>
                     <div class="col-sm-12 col-md-8">
         	       {$form.Platform_Name.html}
@@ -291,7 +289,7 @@
 	    <div class="row">
                 <div class="form-group col-sm-4">
                     <label class="col-sm-12 col-md-4">
-        		Gene Name
+        	        {$form.Gene_Name.label}
                     </label>
                     <div class="col-sm-12 col-md-8">
         	        {$form.Gene_Name.html}
@@ -321,16 +319,14 @@
 		    </div>
 	        </div>
                 <div class="col-sm-4 col-md-2 col-xs-12 ">
-                    <input type="submit" name="filter" value="Show Data" id="showdata" class="btn btn-s
-m btn-primary col-xs-12" />
+                    <input type="submit" name="filter" value="Show Data" id="showdata" class="btn btn-sm btn-primary col-xs-12" />
                 </div>
                 <div class="visible-xs col-xs-12"> </div>
                 <div class="visible-xs col-xs-12"> </div>
                 <div class="visible-xs col-xs-12"> </div>
                 <div class="visible-xs col-xs-12"> </div>
                 <div class="col-sm-4 col-md-2 col-xs-12">
-                   <input type="button" name="reset" value="Clear Form" class="btn btn-sm btn-primary col-xs-12" onclic
-k="location.href='main.php?test_name=genomic_variant_browser&reset=true'" />
+                   <input type="button" name="reset" value="Clear Form" class="btn btn-sm btn-primary col-xs-12" onclick="location.href='main.php?test_name=genomic_variant_browser&reset=true'" />
                 </div>
                 <div class="visible-xs col-xs-12"> </div>
                 <div class="visible-xs col-xs-12"> </div>
@@ -369,7 +365,7 @@ k="location.href='main.php?test_name=genomic_variant_browser&reset=true'" />
                      <th>No.</th>
                         <!-- print out column headings - quick & dirty hack -->
                         {section name=header loop=$headers}
-                            <th><a href="main.php?test_name=candidate_list&filter[order][field]={$headers[header].name}&filter[order
+                            <th><a href="main.php?test_name=genomic_variant_browser&filter[order][field]={$headers[header].name}&filter[order
 ][fieldOrder]={$headers[header].fieldOrder}">{$headers[header].displayName}</a></th>
                         {/section}
                     </tr>

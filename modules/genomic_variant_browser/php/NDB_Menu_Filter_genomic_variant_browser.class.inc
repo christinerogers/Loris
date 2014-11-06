@@ -338,8 +338,8 @@ class NDB_Menu_Filter_genomic_variant_browser extends NDB_Menu_Filter
 
         $this->addBasicText('Chromosome','Chromosome:');
         $this->addBasicText('Strand','Strand:');
-        $this->addBasicText('Gene_Symbol','Official Gene Symbol:');
-        $this->addBasicText('Gene_Name','Official Gene Name:');
+        $this->addBasicText('Gene_Symbol','Gene Symbol:');
+        $this->addBasicText('Gene_Name','Gene Name:');
         $this->addBasicText('Platform_Name','Platform Name:');
 
 	// common to both, for now... not sure these are relevant to CNV at all. 
