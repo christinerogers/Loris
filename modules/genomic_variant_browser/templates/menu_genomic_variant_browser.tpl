@@ -83,12 +83,18 @@
                         <input type="button" name="CNVselector" value="Show CNV Filters" id="show-cnv-selector" class="btn btn-sm btn-primary col-xs-12 show-cnv-selector" onclick="toggleCNV()" />
 		    </div>
 	        </div>
+                <div class="row">
+		   <br>
+		</div>
 	    </div>
             <div class="cnv-options" style="display:none" id="cnv-options">
                 <div class="row">
 		    <div class="col-sm-4 col-md-2 col-xs-12" >
                         <input type="button" id="hide-cnv-selector" value="Hide CNV Filters" class="btn btn-sm btn-primary col-xs-12" onclick="toggleCNV()" style="display:none;" />
 		    </div>
+		</div>
+                <div class="row">
+		   <br>
 		</div>
                 <div class="row">
                     <div class="form-group col-sm-4">
@@ -162,12 +168,18 @@
                         <input type="button" name="SNPselector" value="Show SNP Filters" id="show-snp-selector" class="btn btn-sm btn-primary col-xs-12 show-snp-selector" onclick="toggleSNP()" />
 	            </div>
 	        </div>
+                <div class="row">
+		   <br>
+		</div>
 	    </div>
     	    <div class="snp-options" style="display:none" id="snp-options">
                 <div class="row">
 	    	    <div class="col-sm-4 col-md-2 col-xs-12">
                         <input type="button" id="hide-snp-selector" value="Hide SNP Filters" class="btn btn-sm btn-primary col-xs-12 " onclick="toggleSNP()" style="display:none;" />
 		    </div>
+		</div>
+                <div class="row">
+		   <br>
 		</div>
 		<div class="row">
                     <div class="form-group col-sm-4">
@@ -256,6 +268,9 @@
         		    {$form.Genotype_Quality.html}
 			</div>
 		    </div>
+		</div>
+                <div class="row">
+		   <hr>
 		</div>
 	    </div> <!--end of SNP filters-->
     <br class="visible-xs">
