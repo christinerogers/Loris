@@ -249,9 +249,9 @@
       <!-- title -->
       {if {$resultcount} != '' }
         <td class="controlpanelsection">Variants found: <strong>{$resultcount}</strong> total</td>
-                            <a href="{$csvUrl}" download="{$csvFile}.csv">
-                                                  Download as CSV
-                                                                      </a>
+                            <a href="{$csvUrl}" download="{$csvFile}_SNP.csv">
+                                                  [ Download as CSV ]
+                                                                      </a><br><br>
       {else}
         <td>No variants found. </td>
       {/if} 

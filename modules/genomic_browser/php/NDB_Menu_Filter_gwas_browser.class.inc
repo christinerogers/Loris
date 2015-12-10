@@ -174,7 +174,7 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
         $this->tpl_data['displayBrief'] = $this->_displayBrief;
 
         // re-set headers if Brief; if full, gets set by _setDataTable()
-        if ( $this->_displayBrief ) {
+        if ($this->_displayBrief) {
             $this->headers = array(); // re-initialize i.e. wipe
             foreach ($this->_briefFields as $col) {
                 $this->headers[] = $col;

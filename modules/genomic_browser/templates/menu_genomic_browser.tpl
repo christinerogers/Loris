@@ -158,9 +158,9 @@
       <!-- title -->
         {if {$resultcount} != '' }
           <td class="controlpanelsection">Profiles found: <strong>{$resultcount}</strong> total</td>
-                              <a href="{$csvUrl}" download="{$csvFile}.csv">
-                                                    Download as CSV
-                                                                        </a>
+                              <a href="{$csvUrl}" download="{$csvFile}_profiles.csv">
+                                                    [ Download as CSV ]
+                                                                        </a><br>
         {else}
           <td>No results found. </td>
         {/if}

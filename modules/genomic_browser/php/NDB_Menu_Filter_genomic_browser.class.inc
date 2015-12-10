@@ -165,7 +165,7 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
             // has access to all sites genomic data
             // get the list of study sites - to be replaced by the Site object
             $list_of_sites = Utility::getSiteList();
-            if ( is_array($list_of_sites) ) {
+            if (is_array($list_of_sites)) {
                 $list_of_sites = array('' => 'Any') + $list_of_sites;
             }
         } else {
@@ -236,7 +236,7 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
         $this->tpl_data['displayBrief'] = $this->_displayBrief;
 
         // re-set headers if Brief; if full, gets set by _setDataTable()
-        if ( $this->_displayBrief ) {
+        if ($this->_displayBrief) {
             $this->headers = array(); // re-initialize i.e. wipe
             foreach ($this->_briefFields as $col) {
                  if ($col == "Top_Raw_File" || $col == "Top_Cleaned_File") {
