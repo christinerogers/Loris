@@ -137,7 +137,7 @@
                                                   Download as CSV
                                                                       </a>
       {else}
-        <td>No variants found. </td>
+        <td>No results found. </td>
       {/if} 
       <!-- display pagination links -->
       {if {$resultcount} != '' && $resultcount > 25}  

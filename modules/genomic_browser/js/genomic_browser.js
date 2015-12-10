@@ -114,6 +114,8 @@ $(document).ready(function() {
 //-- End inserted into ready function for viewGenomicFile (from imaging browser)
 });
 
+// Elements called -mri for ViewGenomicFile page 
+// as they should match design and functionality of Imaging Browser's -mri elements
 $(function () {
         "use strict";
             $(".table-mri>tbody>tr:odd").css("background-color", "#d0d0d0");

@@ -52,7 +52,6 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
                 || $user->hasPermission('genomic_browser_view_site'));
     }
 
-
     /**
      * Function _setupVariables
      *
@@ -216,7 +215,7 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
 
                 //Show the URL to the timepoint list on PSCID field
                 if ($key == 'SNP_ID' && $user->hasPermission('access_all_profiles')) {
-                    $this->tpl_data['items'][$x][$i]['SNP_ID'] = $item['SNP_ID']; // URL link?
+                    $this->tpl_data['items'][$x][$i]['SNP_ID'] = $item['SNP_ID'];
                 }
                 $this->tpl_data['items'][$x][$i]['name']  = $key;
                 $this->tpl_data['items'][$x][$i]['value'] = $val;

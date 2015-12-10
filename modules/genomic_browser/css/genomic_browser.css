@@ -1,3 +1,7 @@
+# This file still contains classes called mri* 
+# because it is designed to match the viewSession page
+# css classes specific to the Imaging Browser.
+
 .clickable {
     cursor: pointer;
 }

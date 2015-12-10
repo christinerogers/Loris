@@ -35,9 +35,6 @@
                 {*  </div> *}<!--closing row div -->
                       <div class="panel-body">
                       <div class="mri-righttable col-xs-12" id="mri-righttable-{$files[file].GenomicFileID}">
-                      <!--div class="mri-righttable col-xs-12" id="mri-righttable-{$files[file].GenomicFileID}"-->
-
-                      <!--table class="table table-hover table-bordered header-info col-xs-12 dynamictable"-->
                       <table class="table table-hover table-bordered header-info col-xs-12 dynamictable">
                         <tr>
                             <th class="col-xs-2 info">VisitLabel</th><td class="col-xs-2">{$files[file].VisitLabel}</td>

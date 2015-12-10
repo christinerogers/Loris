@@ -74,13 +74,6 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
                           'count(DISTINCT gbf1.`FileName`) as Raw_Filesets', 
                           'gbf2.FileName as Top_Cleaned_File',
                           'count(DISTINCT gbf2.FileName) as Cleaned_Filesets',
-/*
-                          'toprawfiles.topRawFile as Top_Raw_File',
-                          'rawfiles.rawFileCount as Raw_Filesets',
-                          'topcleanedfiles.topCleanedFile as Top_Cleaned_File',
-                          'cleanedfiles.cleanedFileCount as Cleaned_Filesets',
-  */
-                        // ' as GWAS_Count',
                           'S.SNPCount as SNPs',
                           'C.CNVCount as CNVs',
                         ); 
@@ -93,7 +86,6 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
                           'Raw_Filesets',
                           'Top_Cleaned_File',
                           'Cleaned_Filesets',
-            //              'GWAS_Count',
                           'SNPs',
                           'CNVs',
                          );
@@ -116,27 +108,6 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
             WHERE 
             candidate.Entity_type = 'Human' AND candidate.Active = 'Y' ";
 
-            /*
-            LEFT JOIN (select rf.CandID, rf.FileName as topRawFile
-               FROM genomic_browser_files rf WHERE rf.Category='raw'
-               GROUP BY rf.CandID ) 
-               AS toprawfiles 
-                   ON (toprawfiles.CandID=candidate.CandID)
-            LEFT JOIN (select f.CandID, count(f.CandID) as rawFileCount
-               FROM genomic_browser_files f WHERE f.Category='raw'
-               GROUP BY f.CandID) AS rawfiles
-               ON (rawfiles.CandID=candidate.CandID)
-            LEFT JOIN (select cf2.CandID, cf2.filename as topCleanedFile
-               FROM genomic_browser_files cf2 WHERE cf2.Category='cleaned'
-               GROUP BY cf2.CandID ) 
-               AS topcleanedfiles
-                   ON (topcleanedfiles.CandID=candidate.CandID)
-            LEFT JOIN (select f2.CandID, count(f2.CandID) as cleanedFileCount
-               FROM genomic_browser_files f2 WHERE f2.Category='cleaned'
-               GROUP BY f2.CandID) AS cleanedfiles
-               ON (cleanedfiles.CandID=candidate.CandID)
-               */
-
         $DB   = Database::singleton();
         $user = User::singleton();
         if (!$user->hasPermission('genomic_browser_view_allsites')) {
@@ -144,7 +115,7 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
             $this->query .= $DB->quote($user->getCenterID());
         }
 
-        $this->group_by     = 'candidate.CandID'; // ### 150901
+        $this->group_by     = 'candidate.CandID'; 
         $this->order_by     = 'psc.Name, candidate.CandID DESC';
         $this->validFilters = array(
                                'candidate.CenterID',
@@ -306,9 +277,6 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
             $this->tpl_data['headers'] = $briefHeaders;
         }
 
- // print "<br><br>## POST HEADERS: ";
- // print_r($this->tpl_data['headers']); 
-
         $x = 0;
         foreach ($this->list as $item) {
             //calculate row number
@@ -328,19 +296,16 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
                     $this->tpl_data['items'][$x][$i]['DCCID'] = $item['DCCID'];
                 }
 
-                // don't store to tpl_data, just store column value in a variable, and loop
+                // don't store to tpl_data, just store col value in variable, and loop
                 if ($key=='Top_Raw_File'){
                     // value may be blank ?  
                     $rawFile = $val;
-                    // print "Setting rawFile : $rawFile "; 
                     // increment to leave a blank column in tpl_data for Total_Filesets
                     $i++; 
                     continue; 
                 }
                 elseif ($key=='Top_Cleaned_File'){
-                    // value may be blank ?  
                     $cleanedFile = $val;
-                    // print "Setting cleanedFile : $cleanedFile "; 
                     continue; 
                 }
 
@@ -349,17 +314,15 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
 
                 if ($key=='Raw_Filesets'){
                     $this->tpl_data['items'][$x][$i]['file'] = $rawFile;
-                    // print "added rawFile: $rawFile"; 
                 }
                 elseif ($key=='Cleaned_Filesets'){
                     $this->tpl_data['items'][$x][$i]['file'] = $cleanedFile;
-                    // print "added cleanedFile: $cleanedFile"; 
 
                     // back-calculate Total Count of Filesets from Raw and Cleaned cols
-                    $totalCol = $i - 2; // - 4; // 2 columns prior to Cleaned_Filesets column
+                    $totalCol = $i - 2; // 2 columns prior to Cleaned_Filesets column
                     $totalVal = 0;  // initialize
                     // assumed raw is previous col, already processed
-                    $rawCol = $i - 1; // - 2;  // 1 columns prior
+                    $rawCol = $i - 1; // 1 column prior
                     $rawVal = $this->tpl_data['items'][$x][$rawCol]['value']; 
                     
                     if (is_numeric($val)) { // Cleaned Val 
@@ -375,21 +338,12 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
                     $this->tpl_data['items'][$x][$totalCol]['value'] =$totalVal; 
                     $this->tpl_data['items'][$x][$totalCol]['name'] = "Total_Filesets";
 
-/*
-print "\r ## record $x \r"; 
-for ( $q = 0; $q <= $i ; $q++) {
- $objq = $this->tpl_data['items'][$x][$q] ; 
-    print "col$q : ".$objq['name']." = ".$objq['value']." : ".$objq['file']." \r"; 
-}
-*/
-
                 } // end if Cleaned 
 
                 // Print '' if no data
                 if ($key=='Raw_Filesets' || $key=='Cleaned_Filesets' 
                     || $key == 'SNPs' || $key == 'CNVs' ) {
                     if (is_null($val) || $val === '0') {
-                        // $this->tpl_data['items'][$x][$i]['value'] = '-';
                         $this->tpl_data['items'][$x][$i]['value'] = '';
                     }
                 }  // if is_numeric, set = $val 
@@ -433,7 +387,6 @@ for ( $q = 0; $q <= $i ; $q++) {
             }
             return $query;
         }
-//        print "KEY $key VAL $val $field \r"; 
 
         if ((!empty($val) || $val === '0') && $field != 'order') {
             if (in_array($field, $this->CheckboxFilters) && $val) {
