@@ -62,15 +62,15 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
     {
         // set the class variables
         $this->columns = array(
-                          'GWAS_JMP_glimmix.rsID AS SNP_ID',
-                          'GWAS_JMP_glimmix.Chromosome AS Chromosome',
-                          'GWAS_JMP_glimmix.Position_BP AS Position_BP',
-                          'GWAS_JMP_glimmix.MajorAllele AS Major_Allele',
-                          'GWAS_JMP_glimmix.MinorAllele AS Minor_Allele',
-                          'GWAS_JMP_glimmix.MAF AS MAF',
-                          'GWAS_JMP_glimmix.Estimate AS Estimate',
-                          'GWAS_JMP_glimmix.StdErr AS StdErr',
-                          'GWAS_JMP_glimmix.Pvalue AS P_value', 
+                          'GWAS.rsID AS SNP_ID',
+                          'GWAS.Chromosome AS Chromosome',
+                          'GWAS.Position_BP AS Position_BP',
+                          'GWAS.MajorAllele AS Major_Allele',
+                          'GWAS.MinorAllele AS Minor_Allele',
+                          'GWAS.MAF AS MAF',
+                          'GWAS.Estimate AS Estimate',
+                          'GWAS.StdErr AS StdErr',
+                          'GWAS.Pvalue AS P_value', 
                          );
 
         $this->_briefFields = array(
@@ -85,31 +85,31 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
                           'P_value', 
                          );
 
-        $this->query = " FROM GWAS_JMP_glimmix "; 
+        $this->query = " FROM GWAS "; 
 
-        $this->order_by     = 'GWAS_JMP_glimmix.Chromosome, GWAS_JMP_glimmix.Pvalue DESC';
+        $this->order_by     = 'GWAS.Chromosome, GWAS.Pvalue DESC';
         $this->validFilters = array(
-                               'GWAS_JMP_glimmix.rsID',
-                               'GWAS_JMP_glimmix.Chromosome',
-                               'GWAS_JMP_glimmix.Position_BP',
-                               'GWAS_JMP_glimmix.MajorAllele',
-                               'GWAS_JMP_glimmix.MinorAllele',
-                               'GWAS_JMP_glimmix.MAF',
-                               'GWAS_JMP_glimmix.Estimate',
-                               'GWAS_JMP_glimmix.StdErr',
-                               'GWAS_JMP_glimmix.Pvalue',
+                               'GWAS.rsID',
+                               'GWAS.Chromosome',
+                               'GWAS.Position_BP',
+                               'GWAS.MajorAllele',
+                               'GWAS.MinorAllele',
+                               'GWAS.MAF',
+                               'GWAS.Estimate',
+                               'GWAS.StdErr',
+                               'GWAS.Pvalue',
                               );
 
         $this->formToFilter = array(
-                               'SNP_ID'       => 'GWAS_JMP_glimmix.rsID',
-                               'Chromosome'   => 'GWAS_JMP_glimmix.Chromosome',
-                               'Position_BP'  => 'GWAS_JMP_glimmix.Position_BP',
-                               'Major_Allele' => 'GWAS_JMP_glimmix.Major_Allele',
-                               'Minor_Allele' => 'GWAS_JMP_glimmix.Minor_Allele',
-                               'MAF'          => 'GWAS_JMP_glimmix.MAF',
-                               'Estimate'     => 'GWAS_JMP_glimmix.Estimate',
-                               'StdErr'       => 'GWAS_JMP_glimmix.StdErr',
-                               'P_value'      => 'GWAS_JMP_glimmix.P_value', 
+                               'SNP_ID'       => 'GWAS.rsID',
+                               'Chromosome'   => 'GWAS.Chromosome',
+                               'Position_BP'  => 'GWAS.Position_BP',
+                               'Major_Allele' => 'GWAS.Major_Allele',
+                               'Minor_Allele' => 'GWAS.Minor_Allele',
+                               'MAF'          => 'GWAS.MAF',
+                               'Estimate'     => 'GWAS.Estimate',
+                               'StdErr'       => 'GWAS.StdErr',
+                               'P_value'      => 'GWAS.P_value', 
                               );
 
         return true;
