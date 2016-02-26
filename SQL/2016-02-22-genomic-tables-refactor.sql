@@ -123,7 +123,7 @@ CREATE TABLE `SNP_candidate_rel` (
 DROP TABLE IF EXISTS `SNP`;
 CREATE TABLE `SNP` (
   `SNPID` int(20) NOT NULL AUTO_INCREMENT,
-  `rsID` varchar(9) DEFAULT NULL,
+  `rsID` varchar(20) DEFAULT NULL,
   `Description` text,
   `SNPExternalName` varchar(255) DEFAULT NULL,
   `SNPExternalSource` varchar(255) DEFAULT NULL,
