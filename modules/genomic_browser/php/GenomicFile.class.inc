@@ -12,7 +12,7 @@
 */
 
 /**
-* This object represents a genomic file in the genomic_browser_files table.
+* This object represents a genomic file in the genomic_files table.
 *
 * @category Genomics
 * @package  Genomics
@@ -36,7 +36,7 @@ function __construct($fileID)
     $db     =& Database::singleton();
     $params = array('FID' => $fileID);
 
-    $query    = "SELECT * FROM genomic_browser_files WHERE GenomicFileID=:FID";
+    $query    = "SELECT * FROM genomic_files WHERE GenomicFileID=:FID";
     $fileData = $db->pselectRow($query, $params);
     foreach ($fileData AS $key=>$value) {
         $this->fileData[$key] = $value;

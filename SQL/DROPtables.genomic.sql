@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `CNV`;
+DROP TABLE IF EXISTS `GWAS_JMP_glimmix`;
+DROP TABLE IF EXISTS `SNP`;
+DROP TABLE IF EXISTS `SNP_candidate_rel`;
+DROP TABLE IF EXISTS `SNP_details`;
+DROP TABLE IF EXISTS `gene`;
+DROP TABLE IF EXISTS `genome_loc`;
+DROP TABLE IF EXISTS `genomic_browser_files`;
+DROP TABLE IF EXISTS `genotyping_platform`;

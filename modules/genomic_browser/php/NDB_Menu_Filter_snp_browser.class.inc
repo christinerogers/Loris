@@ -82,15 +82,15 @@ class NDB_Menu_Filter_SNP_Browser extends NDB_Menu_Filter
                           'SNP.SNPExternalName as SNP_Name',
                           'SNP.Description as SNP_Description',
                           'SNP.SNPExternalSource as External_Source',
-                          'SNP.ObservedBase as Observed_Base',
+                          'SNP_candidate_rel.ObservedBase as Observed_Base',
                           'SNP.ReferenceBase as Reference_Base',
-                          'SNP.ArrayReport as Array_Report',
+                          'SNP_candidate_rel.ArrayReport as Array_Report',
                           'SNP.Markers as Markers',
-                          'SNP.ValidationMethod as Validation_Method',
-                          'SNP.Validated as Validated',
+                          'SNP_candidate_rel.ValidationMethod as Validation_Method',
+                          'SNP_candidate_rel.Validated as Validated',
                           'SNP.FunctionPrediction as Function_Prediction',
                           'SNP.Damaging as Damaging',
-                          'SNP.GenotypeQuality as Genotype_Quality',
+                          'SNP_candidate_rel.GenotypeQuality as Genotype_Quality',
                           'SNP.ExonicFunction as Exonic_Function',
                          );
 
@@ -109,18 +109,19 @@ class NDB_Menu_Filter_SNP_Browser extends NDB_Menu_Filter
                               );
 
         // Chromosome from genome_loc table
-        // INNER JOIN on SNP table.
+        // INNER JOIN on SNP_candidate_rel table. //##
         // If a candidate has no SNP records, they will not appear.
         $this->query = " FROM candidate 
             LEFT JOIN (select s.CandID, min(s.subprojectID) as SubprojectID 
                     from session s GROUP BY s.CandID) AS cohort
             ON (cohort.CandID = candidate.CandID) 
             LEFT JOIN psc ON (psc.CenterID = candidate.CenterID)
-            JOIN SNP ON (candidate.CandID = SNP.CandID)
+            JOIN SNP_candidate_rel ON (candidate.CandID = SNP_candidate_rel.CandID)
+            LEFT JOIN SNP ON (SNP.SNPID = SNP_candidate_rel.SNPID)
             LEFT JOIN genome_loc ON (genome_loc.GenomeLocID = SNP.GenomeLocID)  
             LEFT JOIN gene ON (gene.GenomeLocID = SNP.GenomeLocID)
             LEFT JOIN genotyping_platform ON 
-              (SNP.PlatformID = genotyping_platform.PlatformID)
+              (SNP_candidate_rel.PlatformID = genotyping_platform.PlatformID)
             WHERE 
             candidate.Entity_type = 'Human' AND candidate.Active = 'Y' ";
 
@@ -147,14 +148,14 @@ class NDB_Menu_Filter_SNP_Browser extends NDB_Menu_Filter
                                'SNP.Description',
                                'SNP.SNPExternalSource',
                                'SNP.ObservedBase',
-                               'SNP.ReferenceBase',
-                               'SNP.ArrayReport',
+                               'SNP_candidate_rel.ReferenceBase',
+                               'SNP_candidate_rel.ArrayReport',
                                'SNP.Markers',
-                               'SNP.ValidationMethod',
-                               'SNP.Validated as Validated',
+                               'SNP_candidate_rel.ValidationMethod',
+                               'SNP_candidate_rel.Validated as Validated',
                                'SNP.FunctionPrediction',
                                'SNP.Damaging',
-                               'SNP.GenotypeQuality',
+                               'SNP_candidate_rel.GenotypeQuality',
                                'SNP.ExonicFunction',
                                'genome_loc.Chromosome',
                                'genome_loc.Strand',
@@ -176,15 +177,15 @@ class NDB_Menu_Filter_SNP_Browser extends NDB_Menu_Filter
                                'SNP_Name'            => 'SNP.SNPExternalName',
                                'SNP_Description'     => 'SNP.Description',
                                'SNP_External_Source' => 'SNP.SNPExternalSource',
-                               'Observed_Base'       => 'SNP.ObservedBase',
+                               'Observed_Base'       => 'SNP_candidate_rel.ObservedBase',
                                'Reference_Base'      => 'SNP.ReferenceBase',
                                'Array_Report'        => 'SNP.ArrayReport',
                                'Markers'             => 'SNP.Markers',
-                               'Validation_Method'   => 'SNP.ValidationMethod',
-                               'Validated'           => 'SNP.Validated',
+                               'Validation_Method'   => 'SNP_candidate_rel.ValidationMethod',
+                               'Validated'           => 'SNP_candidate_rel.Validated',
                                'Function_Prediction' => 'SNP.FunctionPrediction',
                                'Damaging'            => 'SNP.Damaging',
-                               'Genotype_Quality'    => 'SNP.GenotypeQuality',
+                               'Genotype_Quality'    => 'SNP_candidate_rel.GenotypeQuality',
                                'Exonic_Function'     => 'SNP.ExonicFunction',
                                'Chromosome'          => 'genome_loc.Chromosome',
                                'Gene_Symbol'         => 'gene.OfficalSymbol',

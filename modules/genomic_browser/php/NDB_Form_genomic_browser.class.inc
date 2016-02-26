@@ -99,7 +99,7 @@ function _setFileData($category = null)
 {
     if (!empty($this->category) ) { // apply Category filter
         $files = $this->DB->pselect(
-            "SELECT genomic_browser_files.GenomicFileID FROM genomic_browser_files 
+            "SELECT genomic_files.GenomicFileID FROM genomic_files 
             WHERE CandID=:cid AND Category=:catid", 
             array(
             'cid' => $this->candID,
@@ -109,7 +109,7 @@ function _setFileData($category = null)
     }
     else {
         $files = $this->DB->pselect(
-            "SELECT genomic_browser_files.GenomicFileID FROM genomic_browser_files 
+            "SELECT genomic_files.GenomicFileID FROM genomic_files 
             WHERE CandID=:cid ", 
             array(
             'cid' => $this->candID

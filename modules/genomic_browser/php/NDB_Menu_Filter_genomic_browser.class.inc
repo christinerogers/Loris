@@ -96,9 +96,9 @@ class NDB_Menu_Filter_Genomic_Browser extends NDB_Menu_Filter
                 ON (cohort.CandID=candidate.CandID) 
             LEFT JOIN psc ON (psc.CenterID= candidate.CenterID)
 
-            LEFT JOIN  `genomic_browser_files` AS gbf1 ON candidate.CandID = gbf1.CandID AND gbf1.Category='raw'
+            LEFT JOIN  `genomic_files` AS gbf1 ON candidate.CandID = gbf1.CandID AND gbf1.Category='raw'
 
-            LEFT JOIN  `genomic_browser_files` AS gbf2 ON candidate.CandID = gbf2.CandID AND gbf2.Category='cleaned'
+            LEFT JOIN  `genomic_files` AS gbf2 ON candidate.CandID = gbf2.CandID AND gbf2.Category='cleaned'
             LEFT JOIN (select scr.CandID, count(scr.CandID) as SNPCount
                 from SNP_candidate_rel as scr GROUP BY scr.CandID) as S 
                  ON (candidate.CandID = S.CandID)

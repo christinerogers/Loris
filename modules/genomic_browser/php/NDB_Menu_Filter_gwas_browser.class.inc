@@ -63,8 +63,10 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
         // set the class variables
         $this->columns = array(
                           'GWAS.rsID AS SNP_ID',
-                          'GWAS.Chromosome AS Chromosome',
-                          'GWAS.Position_BP AS Position_BP',
+                          'genome_loc.Chromosome AS Chromosome',
+                          'genome_loc.StartLoc AS Position_BP',
+#                           'GWAS.Chromosome AS Chromosome',
+#                          'GWAS.Position_BP AS Position_BP',
                           'GWAS.MajorAllele AS Major_Allele',
                           'GWAS.MinorAllele AS Minor_Allele',
                           'GWAS.MAF AS MAF',
@@ -85,13 +87,16 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
                           'P_value', 
                          );
 
-        $this->query = " FROM GWAS "; 
+        // $this->query = " FROM GWAS "; 
+        $this->query = " FROM GWAS 
+            JOIN SNP ON (GWAS.SNPID = SNP.SNPID)
+            LEFT JOIN genome_loc ON (genome_loc.GenomeLocID = SNP.GenomeLocID)"; 
 
-        $this->order_by     = 'GWAS.Chromosome, GWAS.Pvalue DESC';
+        $this->order_by     = 'genome_loc.Chromosome, GWAS.Pvalue DESC';
         $this->validFilters = array(
                                'GWAS.rsID',
-                               'GWAS.Chromosome',
-                               'GWAS.Position_BP',
+                               'genome_loc.Chromosome',
+                               'genome_loc.StartLoc',
                                'GWAS.MajorAllele',
                                'GWAS.MinorAllele',
                                'GWAS.MAF',
@@ -102,8 +107,8 @@ class NDB_Menu_Filter_GWAS_Browser extends NDB_Menu_Filter
 
         $this->formToFilter = array(
                                'SNP_ID'       => 'GWAS.rsID',
-                               'Chromosome'   => 'GWAS.Chromosome',
-                               'Position_BP'  => 'GWAS.Position_BP',
+                               'Chromosome'   => 'genome_loc.Chromosome',
+                               'Position_BP'  => 'genome_loc.StartLoc',
                                'Major_Allele' => 'GWAS.Major_Allele',
                                'Minor_Allele' => 'GWAS.Minor_Allele',
                                'MAF'          => 'GWAS.MAF',
