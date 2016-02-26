@@ -170,3 +170,19 @@ CREATE TABLE `genomic_files` (
   CONSTRAINT `FK_genomic_browser_files_1` FOREIGN KEY (`CandID`) REFERENCES `candidate` (`CandID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
+INSERT INTO ConfigSettings (Name, Description, Visible, AllowMultiple, DataType, Parent, Label, OrderNumber) SELECT 'GenomicDataPath', 'Path to Genomic data files', 1, 0, 'text', ID, 'Genomic Data Path', 8 FROM ConfigSettings WHERE Name="paths"; 
+
+INSERT INTO Config (ConfigID, Value) SELECT ID, "/PATH/TO/Genomic-Data/" FROM ConfigSettings WHERE Name="GenomicDataPath";
+
+CREATE TABLE `genomic_upload` (
+  `GenomicUploadID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `UploadedBy` varchar(255) NOT NULL DEFAULT '',
+  `UploadDate` DateTime DEFAULT NULL,
+  `UploadLocation` varchar(255) NOT NULL DEFAULT '',
+  `CompressedUpload` tinyint(1) NOT NULL DEFAULT '0',
+  `DecompressedLocation` varchar(255) NOT NULL DEFAULT '',
+  `Processed` tinyint(1) NOT NULL DEFAULT '0',
+  `GenomicFileID` int(10) DEFAULT NULL,
+  `IsValidated` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`GenomicUploadID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
