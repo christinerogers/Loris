@@ -26,7 +26,7 @@ CREATE TABLE `CNV` (
   KEY `PlatformID` (`PlatformID`),
   KEY `GenomeLocID` (`GenomeLocID`),
   KEY `CandID` (`CandID`)
-) ENGINE=MyISAM AUTO_INCREMENT=828 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=828 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `gene`
@@ -43,7 +43,7 @@ CREATE TABLE `gene` (
   `GenomeLocID` int(20) DEFAULT NULL,
   PRIMARY KEY (`GeneID`),
   KEY `geneGenomeLocID` (`GenomeLocID`)
-) ENGINE=MyISAM AUTO_INCREMENT=18117 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=18117 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `genome_loc`
@@ -58,7 +58,7 @@ CREATE TABLE `genome_loc` (
   `Size` int(11) DEFAULT NULL,
   `StartLoc` int(11) DEFAULT NULL,
   PRIMARY KEY (`GenomeLocID`)
-) ENGINE=MyISAM AUTO_INCREMENT=29732 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=29732 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +75,7 @@ CREATE TABLE `genotyping_platform` (
   `TechnologyType` varchar(255) DEFAULT NULL,
   `Provider` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`PlatformID`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -135,7 +135,7 @@ CREATE TABLE `SNP` (
   `GenomeLocID` int(20) DEFAULT NULL,
   PRIMARY KEY (`SNPID`),
   KEY `GenomeLocID` (`GenomeLocID`)
-) ENGINE=MyISAM AUTO_INCREMENT=154 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `genomic_files`
