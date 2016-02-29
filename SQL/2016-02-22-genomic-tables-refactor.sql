@@ -166,11 +166,11 @@ CREATE TABLE `genomic_files` (
   `Caveat` tinyint(1) DEFAULT NULL,
   `Notes` text,
   PRIMARY KEY (`GenomicFileID`),
-  KEY `FK_genomic_browser_files_1` (`CandID`),
-  CONSTRAINT `FK_genomic_browser_files_1` FOREIGN KEY (`CandID`) REFERENCES `candidate` (`CandID`)
+  KEY `FK_genomic_files_1` (`CandID`),
+  CONSTRAINT `FK_genomic_files_1` FOREIGN KEY (`CandID`) REFERENCES `candidate` (`CandID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
-INSERT INTO ConfigSettings (Name, Description, Visible, AllowMultiple, DataType, Parent, Label, OrderNumber) SELECT 'GenomicDataPath', 'Path to Genomic data files', 1, 0, 'text', ID, 'Genomic Data Path', 8 FROM ConfigSettings WHERE Name="paths"; 
+INSERT IGNORE INTO ConfigSettings (Name, Description, Visible, AllowMultiple, DataType, Parent, Label, OrderNumber) SELECT 'GenomicDataPath', 'Path to Genomic data files', 1, 0, 'text', ID, 'Genomic Data Path', 8 FROM ConfigSettings WHERE Name="paths"; 
 
 INSERT INTO Config (ConfigID, Value) SELECT ID, "/PATH/TO/Genomic-Data/" FROM ConfigSettings WHERE Name="GenomicDataPath";
 
