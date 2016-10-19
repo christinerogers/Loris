@@ -586,7 +586,7 @@ WHERE (u.CenterID=:CenterID) OR (u.CenterID=:DCC)",
 
     $unorgCategories = $db -> pselect( "SELECT categoryName
         FROM issues_categories", []);
-    $categories = array('' => "All");
+    $categories = array(); 
     foreach ($unorgCategories as $r_row) {
         $categoryName = $r_row['categoryName'];
         if ($categoryName) {
